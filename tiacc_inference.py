@@ -511,8 +511,9 @@ def optimize(
         return (res[0], res[1])
 
     elif isinstance(input_model, torch.nn.Module):
-        res = optimize_nn_module(input_model, optimization_level, device_type, device_id,
-            min_input_shapes, max_input_shapes, types, test_data, report, optimization_config)
+        with torch.no_grad():
+            res = optimize_nn_module(input_model, optimization_level, device_type, device_id,
+                min_input_shapes, max_input_shapes, types, test_data, report, optimization_config)
 
         status = res[2]
         if status.code != StatusCode.TIACC_OK:
