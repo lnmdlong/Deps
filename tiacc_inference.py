@@ -626,8 +626,8 @@ def load(
                             config.model.backbone.init_cfg = None
                         config.model.train_cfg = None
                         model = build_detector(config.model, test_cfg=config.get('test_cfg'))
-                        if 'CLASSES' in loaded_input_model.get('meta', {}):
-                            classes = loaded_input_model['meta']['CLASSES']
+                        if 'CLASSES' in loaded_input_model.get('tiacc_mmdet_meta', {}):
+                            classes = loaded_input_model['tiacc_mmdet_meta']['CLASSES']
                         else:
                             classes = mmdet.core.get_classes('coco')
                         model.CLASSES = classes
